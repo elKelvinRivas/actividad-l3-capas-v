@@ -18,7 +18,7 @@ public class VideogameImpl implements VideogameService {
     @Override
     public VideogameDTO findById(Integer id) {
         return videogameRepository.findById(id)
-                .map(videogame -> new VideogameDTO( videogame.getName(), videogame.getGenre(), videogame.getReleaseYear(), videogame.getDeveloper()))
+                .map(videogame -> new VideogameDTO(videogame.getName(), videogame.getGenre(), videogame.getReleaseYear(), videogame.getDeveloper()))
                 .orElse(null);
     }
 
@@ -31,5 +31,5 @@ public class VideogameImpl implements VideogameService {
         videogame.setDeveloper(videogameDTO.getDeveloper());
 
         Videogame saved = videogameRepository.save(videogame);
-        return new VideogameDTO( saved.getName(), saved.getGenre(), saved.getReleaseYear(), saved.getDeveloper());}
+        return new VideogameDTO(saved.getName(), saved.getGenre(), saved.getReleaseYear(), saved.getDeveloper());}
 }

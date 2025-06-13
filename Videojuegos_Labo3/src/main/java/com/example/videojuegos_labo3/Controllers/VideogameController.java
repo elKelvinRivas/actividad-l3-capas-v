@@ -5,10 +5,7 @@ import com.example.videojuegos_labo3.Services.VideogameService;
 import com.example.videojuegos_labo3.entities.Videogame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/videogames")
@@ -23,4 +20,8 @@ public class VideogameController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<VideogameDTO> getCarById(@PathVariable Integer id){
+        return videogameService.findById(id) == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(videogameService.findById(id));
+    }
 }
