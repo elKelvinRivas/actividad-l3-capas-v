@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 public class VideogameDTO {
-    @NotNull(message = "El id no puede ser nulo")
-    private Integer id;
     @NotNull(message = "El nombre no puede ser nulo")
     private String name;
     @NotNull(message = "El genero no puede ser nulo")
