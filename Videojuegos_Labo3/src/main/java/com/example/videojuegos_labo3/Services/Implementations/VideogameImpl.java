@@ -1,6 +1,7 @@
 package com.example.videojuegos_labo3.Services.Implementations;
 
 import com.example.videojuegos_labo3.DTO.VideogameDTO;
+import com.example.videojuegos_labo3.DTO.VideogameResponse;
 import com.example.videojuegos_labo3.Services.VideogameService;
 import com.example.videojuegos_labo3.entities.Videogame;
 import com.example.videojuegos_labo3.repository.VideogameRepository;
@@ -18,9 +19,9 @@ public class VideogameImpl implements VideogameService {
     }
 
     @Override
-    public VideogameDTO findById(Integer id) {
+    public VideogameResponse findById(Integer id) {
         return videogameRepository.findById(id)
-                .map(videogame -> new VideogameDTO(videogame.getName(), videogame.getGenre(), videogame.getReleaseYear(), videogame.getDeveloper()))
+                .map(videogame -> new VideogameResponse(videogame.getId(), videogame.getName(), videogame.getGenre(), videogame.getReleaseYear(), videogame.getDeveloper()))
                 .orElse(null);
     }
 
@@ -36,9 +37,10 @@ public class VideogameImpl implements VideogameService {
         return new VideogameDTO(saved.getName(), saved.getGenre(), saved.getReleaseYear(), saved.getDeveloper());}
 
     @Override
-    public List<VideogameDTO> findAll() {
+    public List<VideogameResponse> findAll() {
         return videogameRepository.findAll().stream()
-                .map(videogame -> new VideogameDTO(
+                .map(videogame -> new VideogameResponse(
+                        videogame.getId(),
                         videogame.getName(),
                         videogame.getGenre(),
                         videogame.getReleaseYear(),
