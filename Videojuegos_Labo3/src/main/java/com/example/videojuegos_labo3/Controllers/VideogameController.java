@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/videogames")
 public class VideogameController {
@@ -18,6 +20,11 @@ public class VideogameController {
     public ResponseEntity<VideogameDTO> saveVideogame(@RequestBody VideogameDTO videogameDTO) {
         return ResponseEntity.ok(videogameService.save(videogameDTO));
 
+    }
+
+    @GetMapping()
+    public List<VideogameDTO> findAll() {
+        return videogameService.findAll();
     }
 
     @GetMapping("/{id}")

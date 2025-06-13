@@ -6,6 +6,8 @@ import com.example.videojuegos_labo3.entities.Videogame;
 import com.example.videojuegos_labo3.repository.VideogameRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VideogameImpl implements VideogameService {
 
@@ -32,4 +34,15 @@ public class VideogameImpl implements VideogameService {
 
         Videogame saved = videogameRepository.save(videogame);
         return new VideogameDTO(saved.getName(), saved.getGenre(), saved.getReleaseYear(), saved.getDeveloper());}
+
+    @Override
+    public List<VideogameDTO> findAll() {
+        return videogameRepository.findAll().stream()
+                .map(videogame -> new VideogameDTO(
+                        videogame.getName(),
+                        videogame.getGenre(),
+                        videogame.getReleaseYear(),
+                        videogame.getDeveloper()
+                )).toList();
+    }
 }
